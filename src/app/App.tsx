@@ -1,8 +1,7 @@
 import { Suspense, useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { Route, Routes } from 'react-router-dom'
-import { HomePageAsync } from './pages/HomePage/HomePage.async'
-import { useTheme } from './theme/useTheme'
+import { Link,  Route, Routes } from 'react-router-dom'
+import { useTheme } from 'app/providers/ThemeProvider'
+import { HomePage } from 'pages/HomePage'
 import './styles/index.scss'
 
 
@@ -17,7 +16,7 @@ export const App = () => {
             <Link to={'/'}>Home</Link> 
             <Suspense fallback={<div>LOADING...</div>}>
                 <Routes>
-                    <Route path="/about" element={HomePageAsync}/>
+                    <Route path="/about" element={HomePage}/>
                     <Route path="/"/>
                 </Routes>  
             </Suspense>

@@ -8,6 +8,7 @@ export type TBuildPaths = {
   entry: string;
   build: string;
   html: string;
+  src: string;
 };
 
 export interface IBuildOptions {
