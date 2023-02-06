@@ -1,27 +1,21 @@
-import { Suspense, useState, useContext } from 'react'
-import { Link,  Route, Routes } from 'react-router-dom'
-import { useTheme } from 'app/providers/ThemeProvider'
-import { HomePage } from 'pages/HomePage'
-import './styles/index.scss'
+import React from 'react';
+import './styles/index.scss';
+import {classNames} from "shared/lib/classNames/classNames";
+import {useTheme} from "app/providers/ThemeProvider";
+import {AppRouter} from "app/providers/router";
+import {Navbar} from "widgets/Navbar";
 
 
+const App = () => {
+   const { theme, toggleTheme } = useTheme();
 
-export const App = () => {
-    const {theme, switchTheme} = useTheme()
-
-    return(     
-        <div className={`app ${theme}`}>
-            <button onClick={switchTheme}></button>
-            Hello
-            <Link to={'/'}>Home</Link> 
-            <Suspense fallback={<div>LOADING...</div>}>
-                <Routes>
-                    <Route path="/about" element={HomePage}/>
-                    <Route path="/"/>
-                </Routes>  
-            </Suspense>
+    return (
+        <div className={classNames('app', {}, [theme])}>
+            <Navbar />
+            <AppRouter />
+            <button onClick={toggleTheme}>TOGGLE</button>
         </div>
-    )
+    );
+};
 
-   
-}
+export default App;
